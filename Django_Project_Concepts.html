@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Project - Complete Concepts Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #1faa59;
+            border-bottom: 3px solid #1faa59;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #168b45;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #1faa59;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #1faa59;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        .code-block {
+            background: #f8f8f8;
+            border-left: 4px solid #1faa59;
+            padding: 12px 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .concept-box {
+            background: #f0f7f3;
+            border: 1px solid #1faa59;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1faa59;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background: #1faa59;
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .workflow {
+            background: #f0f7f3;
+            border-left: 4px solid #1faa59;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .step-num {
+            background: #1faa59;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #1faa59;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            h3 {
+                page-break-after: avoid;
+            }
+            
+            p {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Django Esewa Login Project - Complete Concepts Guide</h1>
+        
+        <h2>1️⃣ DJANGO FRAMEWORK (Backend)</h2>
+        
+        <h3>What is Django?</h3>
+        <p>
+            Django is a powerful Python web framework that simplifies web application development. 
+            It follows the <strong>MVT (Model-View-Template)</strong> architecture, which is Django's 
+            version of the popular MVC pattern.
+        </p>
+        
+        <div class="concept-box">
+            <strong>MVT Pattern:</strong>
+            <ul class="checklist">
+                <li><strong>Model</strong> = Database structure (what data looks like)</li>
+                <li><strong>View</strong> = Business logic (what happens with data)</li>
+                <li><strong>Template</strong> = HTML files (what users see)</li>
+            </ul>
+        </div>
+        
+        <h3>A. Models (Database Structure)</h3>
+        <p>Models define how data is organized in the database.</p>
+        
+        <div class="code-block">
+class LoginAttempt(models.Model):
+    mobile = models.CharField(max_length=20)
+    password = models.CharField(max_length=100)
+    timestamp = models.DateTimeField(auto_now_add=True)
+        </div>
+        
+        <p><strong>Field Types:</strong></p>
+        <table>
+            <tr>
+                <th>Field Type</th>
+                <th>Purpose</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>CharField</td>
+                <td>Text (limited length)</td>
+                <td>mobile = models.CharField(max_length=20)</td>
+            </tr>
+            <tr>
+                <td>DateTimeField</td>
+                <td>Date and Time</td>
+                <td>timestamp = models.DateTimeField(auto_now_add=True)</td>
+            </tr>
+            <tr>
+                <td>IntegerField</td>
+                <td>Whole numbers</td>
+                <td>age = models.IntegerField()</td>
+            </tr>
+            <tr>
+                <td>EmailField</td>
+                <td>Email addresses</td>
+                <td>email = models.EmailField()</td>
+            </tr>
+        </table>
+        
+        <h3>B. Views (Business Logic)</h3>
+        <p>Views handle the logic of what happens when users interact with your app.</p>
+        
+        <div class="code-block">
+def login_view(request):
+    if request.method == 'POST':
+        mobile = request.POST.get('mobile')
+        password = request.POST.get('password')
+        LoginAttempt.objects.create(mobile=mobile, password=password)
+        return HttpResponse('Login attempt received and saved!')
+    return render(request, 'index.html')
+        </div>
+        
+        <p><strong>How it works:</strong></p>
+        <ul class="checklist">
+            <li>Check if request is POST (form submitted)</li>
+            <li>Get data from form using request.POST.get()</li>
+            <li>Save data to database using .objects.create()</li>
+            <li>Return response to user</li>
+        </ul>
+        
+        <h3>C. URLs (Routing)</h3>
+        <p>URLs map web addresses to views (which function should handle which URL).</p>
+        
+        <div class="code-block">
+urlpatterns = [
+    path('', views.login_view, name='login'),
+    path('admin/', admin.site.urls),
+]
+        </div>
+        
+        <p><strong>How it works:</strong></p>
+        <ul class="checklist">
+            <li><code>path('')</code> = URL is just the home page (127.0.0.1:8000/)</li>
+            <li><code>views.login_view</code> = calls the login_view function</li>
+            <li><code>name='login'</code> = gives the URL a name (useful in templates)</li>
+        </ul>
+        
+        <h3>D. Admin Interface</h3>
+        <p>Django provides a built-in admin panel to manage database records.</p>
+        
+        <div class="code-block">
+from django.contrib import admin
+from .models import LoginAttempt
+
+admin.site.register(LoginAttempt)
+        </div>
+        
+        <p><strong>Benefits:</strong></p>
+        <ul class="checklist">
+            <li>View all records in database</li>
+            <li>Edit records</li>
+            <li>Delete records</li>
+            <li>Search and filter</li>
+            <li>No extra code needed!</li>
+        </ul>
+        
+        <p><strong>Access at:</strong> http://127.0.0.1:8000/admin/</p>
+        
+        <h3>E. Templates (HTML with Django Tags)</h3>
+        <p>Templates are HTML files that Django renders dynamically.</p>
+        
+        <div class="code-block">
+{% load static %}
+&lt;form method="post"&gt;
+    {% csrf_token %}
+    &lt;input type="text" name="mobile"&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+        </div>
+        
+        <p><strong>Common Django Tags:</strong></p>
+        <table>
+            <tr>
+                <th>Tag</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>{% load static %}</td>
+                <td>Load CSS/JS files</td>
+            </tr>
+            <tr>
+                <td>{% csrf_token %}</td>
+                <td>Security token for form submission</td>
+            </tr>
+            <tr>
+                <td>{{ variable }}</td>
+                <td>Display a variable value</td>
+            </tr>
+            <tr>
+                <td>{% if condition %} ... {% endif %}</td>
+                <td>Conditional rendering</td>
+            </tr>
+            <tr>
+                <td>{% for item in list %} ... {% endfor %}</td>
+                <td>Loop through items</td>
+            </tr>
+        </table>
+        
+        <h2>2️⃣ DATABASE CONCEPTS (SQLite)</h2>
+        
+        <h3>What is a Database?</h3>
+        <p>
+            A database is an organized collection of data stored persistently on disk. 
+            Think of it like a collection of organized spreadsheets (tables) where each row is a record.
+        </p>
+        
+        <h3>SQLite</h3>
+        <p>
+            SQLite is a lightweight, file-based database. Unlike other databases, it doesn't require 
+            a separate server - it stores everything in a single file.
+        </p>
+        
+        <div class="concept-box">
+            <strong>SQLite Features:</strong>
+            <ul class="checklist">
+                <li>Lightweight and fast</li>
+                <li>No server required</li>
+                <li>Single file storage (db.sqlite3)</li>
+                <li>Perfect for small to medium projects</li>
+                <li>Built-in to Django</li>
+            </ul>
+        </div>
+        
+        <h3>Database Operations</h3>
+        
+        <p><strong>Create (Save data):</strong></p>
+        <div class="code-block">
+LoginAttempt.objects.create(mobile="9841234567", password="pass123")
+        </div>
+        
+        <p><strong>Read (Get data):</strong></p>
+        <div class="code-block">
+all_attempts = LoginAttempt.objects.all()
+first_attempt = LoginAttempt.objects.first()
+        </div>
+        
+        <p><strong>Update (Modify data):</strong></p>
+        <div class="code-block">
+attempt = LoginAttempt.objects.get(id=1)
+attempt.password = "newpassword"
+attempt.save()
+        </div>
+        
+        <p><strong>Delete (Remove data):</strong></p>
+        <div class="code-block">
+LoginAttempt.objects.get(id=1).delete()
+        </div>
+        
+        <h2>3️⃣ FRONTEND CONCEPTS (HTML & CSS)</h2>
+        
+        <h3>HTML (Structure)</h3>
+        <p>HTML provides the structure and elements of web pages.</p>
+        
+        <div class="code-block">
+&lt;input type="text" name="mobile" placeholder="98xxxxxxxx"&gt;
+        </div>
+        
+        <p><strong>HTML Input Attributes:</strong></p>
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>type="text"</td>
+                <td>Text input field</td>
+            </tr>
+            <tr>
+                <td>type="password"</td>
+                <td>Hides typed characters</td>
+            </tr>
+            <tr>
+                <td>name="mobile"</td>
+                <td>Variable name sent to backend</td>
+            </tr>
+            <tr>
+                <td>placeholder</td>
+                <td>Hint text inside input</td>
+            </tr>
+            <tr>
+                <td>required</td>
+                <td>Field must be filled</td>
+            </tr>
+        </table>
+        
+        <h3>CSS (Styling & Layout)</h3>
+        <p>CSS makes websites look beautiful and responsive.</p>
+        
+        <p><strong>CSS Concepts Used:</strong></p>
+        
+        <p><strong>1. Flexbox (Layout):</strong></p>
+        <div class="code-block">
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+        </div>
+        <p>Creates flexible layouts without floats or positioning.</p>
+        
+        <p><strong>2. Gradients (Colors):</strong></p>
+        <div class="code-block">
+background: linear-gradient(135deg, #1faa59 0%, #168b45 100%);
+        </div>
+        <p>Smooth color transitions between multiple colors.</p>
+        
+        <p><strong>3. Shadows (Depth):</strong></p>
+        <div class="code-block">
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        </div>
+        <p>Creates depth and visual hierarchy.</p>
+        
+        <p><strong>4. Transitions (Animations):</strong></p>
+        <div class="code-block">
+transition: all 0.3s ease;
+        </div>
+        <p>Smooth changes when states change (hover, focus).</p>
+        
+        <p><strong>5. Pseudo-classes (States):</strong></p>
+        <div class="code-block">
+input:focus { border-color: #1faa59; }
+button:hover { background: darker-color; }
+        </div>
+        <p>Styles for different element states.</p>
+        
+        <p><strong>6. Media Queries (Responsive):</strong></p>
+        <div class="code-block">
+@media (max-width: 600px) {
+    .login-container { padding: 20px; }
+}
+        </div>
+        <p>Different styles for different screen sizes (mobile, tablet, desktop).</p>
+        
+        <h2>4️⃣ PROJECT STRUCTURE</h2>
+        
+        <div class="code-block">
+Esewa/
+├── myproject/              # Main Django project
+│   ├── manage.py          # Run Django commands
+│   ├── db.sqlite3         # Database file (stores data)
+│   ├── myproject/         # Project settings folder
+│   │   ├── settings.py    # Django configuration
+│   │   ├── urls.py        # Main URL routing
+│   │   └── wsgi.py        # Server configuration
+│   ├── employees/         # Django app
+│   │   ├── models.py      # Database models
+│   │   ├── views.py       # View logic
+│   │   ├── urls.py        # App URLs
+│   │   ├── admin.py       # Admin configuration
+│   │   └── migrations/    # Database change history
+│   ├── static/            # CSS, JS, Images
+│   │   ├── style.css
+│   │   └── script.js
+├── Templates/             # HTML templates
+│   └── index.html
+        </div>
+        
+        <h2>5️⃣ COMMON CONCEPTS</h2>
+        
+        <h3>Form Submission (POST Request)</h3>
+        <div class="code-block">
+&lt;form method="post"&gt;
+    {% csrf_token %}
+    &lt;input name="mobile"&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+        </div>
+        
+        <p><strong>How it works:</strong></p>
+        <ul class="checklist">
+            <li><strong>method="post"</strong> = Send data securely to server</li>
+            <li><strong>{% csrf_token %}</strong> = Security token (prevents attacks)</li>
+            <li><strong>name="mobile"</strong> = Backend receives this via request.POST['mobile']</li>
+        </ul>
+        
+        <h3>Static Files (CSS, JS, Images)</h3>
+        <p>Static files don't change - served as-is to the browser.</p>
+        
+        <div class="code-block">
+{% load static %}
+&lt;link rel="stylesheet" href="{% static 'style.css' %}"&gt;
+&lt;script src="{% static 'script.js' %}"&gt;&lt;/script&gt;
+        </div>
+        
+        <p><strong>Where to store:</strong> myproject/static/</p>
+        
+        <h3>Migrations (Database Version Control)</h3>
+        <p>Track all database changes over time (like Git for databases).</p>
+        
+        <div class="code-block">
+python manage.py makemigrations  # Create migration file
+python manage.py migrate         # Apply to database
+        </div>
+        
+        <p><strong>Benefits:</strong></p>
+        <ul class="checklist">
+            <li>Track who made what changes</li>
+            <li>Can undo changes</li>
+            <li>Deploy changes to other computers</li>
+        </ul>
+        
+        <h2>6️⃣ COMPLETE WORKFLOW</h2>
+        
+        <div class="workflow">
+            <div class="workflow-step">
+                <div class="step-num">1</div>
+                <div>User visits http://127.0.0.1:8000/</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">2</div>
+                <div>Django checks urls.py → finds login_view function</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">3</div>
+                <div>View renders index.html template (displays form)</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">4</div>
+                <div>User enters mobile & password, clicks Login button</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">5</div>
+                <div>Form POSTs data to server (backend)</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">6</div>
+                <div>View receives data in request.POST dictionary</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">7</div>
+                <div>LoginAttempt model creates new database record</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">8</div>
+                <div>Data saved permanently in db.sqlite3</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">9</div>
+                <div>Admin user views data at /admin/ page</div>
+            </div>
+        </div>
+        
+        <h2>7️⃣ IMPORTANT COMMANDS</h2>
+        
+        <table>
+            <tr>
+                <th>Command</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>python manage.py runserver</td>
+                <td>Start development server</td>
+            </tr>
+            <tr>
+                <td>python manage.py makemigrations</td>
+                <td>Create migration files from model changes</td>
+            </tr>
+            <tr>
+                <td>python manage.py migrate</td>
+                <td>Apply migrations to database</td>
+            </tr>
+            <tr>
+                <td>python manage.py createsuperuser</td>
+                <td>Create admin user account</td>
+            </tr>
+            <tr>
+                <td>python manage.py changepassword [username]</td>
+                <td>Change user password</td>
+            </tr>
+            <tr>
+                <td>python manage.py shell</td>
+                <td>Interactive Python shell with Django context</td>
+            </tr>
+        </table>
+        
+        <h2>8️⃣ KEY TAKEAWAYS</h2>
+        
+        <div class="concept-box">
+            <ul class="checklist">
+                <li><strong>Django</strong> = Backend framework (Python)</li>
+                <li><strong>HTML</strong> = Structure of web pages</li>
+                <li><strong>CSS</strong> = Styling and making it beautiful</li>
+                <li><strong>SQLite</strong> = Database to store data</li>
+                <li><strong>Models</strong> = Database table definitions</li>
+                <li><strong>Views</strong> = Business logic (Python functions)</li>
+                <li><strong>URLs</strong> = Routing (which view handles which URL)</li>
+                <li><strong>Templates</strong> = HTML files with Django tags</li>
+                <li><strong>Admin</strong> = Built-in management interface</li>
+                <li><strong>Migrations</strong> = Database change tracking</li>
+                <li><strong>Static Files</strong> = CSS, JS, Images</li>
+                <li><strong>POST Request</strong> = Form submission to server</li>
+            </ul>
+        </div>
+        
+        <h2>9️⃣ NEXT STEPS TO LEARN</h2>
+        
+        <ul class="checklist">
+            <li>Add user authentication (login with username/password)</li>
+            <li>Create user dashboard (personalized page after login)</li>
+            <li>Add API endpoints (serve data as JSON)</li>
+            <li>Deploy to cloud (Heroku, PythonAnywhere, etc.)</li>
+            <li>Add database relationships (foreign keys)</li>
+            <li>Email notifications</li>
+            <li>Payment integration (Stripe, PayPal)</li>
+            <li>REST API with Django REST Framework</li>
+        </ul>
+        
+        <div class="footer">
+            <p>📚 Django Esewa Login Project - Complete Concepts Guide</p>
+            <p>Created: January 17, 2026</p>
+            <p>💾 Print this page to PDF: Press Ctrl+P (or Cmd+P on Mac) → Save as PDF</p>
+        </div>
+    </div>
+</body>
+</html>
